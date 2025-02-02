@@ -4,10 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="static/css/index.css">
 </head>
 <body>
+    <div class="quiz">
+        <div class="container">
+            <form action="#"> 
+                <span class="question-number"></span>
+                <span class="question-text"></span>
+                <div class="bottone-testo ">
+                <input type="text" name="answer" id="user-guess">
+                <input type="submit" name="" id="button">
+                </div>
+            </form>
+        </div>
+
     <script>
-        
+
+        /*
+            n. domanda
+            testo_domanda
+            risposta utente (dobbiamo fare sanitize della risposta)
+            risposta corretta 
+            punteggio
+
+            negli oggetti JS: 
+            - le chiavi sono delle stringhe
+            - i valori possono essere di qualsiasi tipo
+            - per separare le chiavi dai corrispettivi valori uso :
+            - per separare le coppie fra loro uso la ,
+        */
+
+        let questions = [
+            {
+                "n_domanda": 1,
+                "testo_domanda": "Perché il libro di matematica era triste?",
+                "risposta_utente": "",
+                "risposta_corretta": "Aveva troppi problemi",
+            },
+            {
+                "n_domanda": 2,
+                "testo_domanda": "Cosa fa un pollo nello spazio?",
+                "risposta_utente": "",
+                "risposta_corretta": "uovo orbitale",
+            },
+            {
+                "n_domanda": 3,
+                "testo_domanda": "Perché il pomodoro non riesce a dormire?",
+                "risposta_utente": "",
+                "risposta_corretta": "è sempre in salsa",
+            },
+            {
+                "n_domanda": 4,
+                "testo_domanda": "Perché il computer è timido?",
+                "risposta_utente": "",
+                "risposta_corretta": "ha troppi file personali",
+            },
+            {
+                "n_domanda": 5,
+                "testo_domanda": "Cosa fa una mucca su un altalena?",
+                "risposta_utente": "",
+                "risposta_corretta": "Dondolatte",
+            },
+
+
+        ]
+
+        window.addEventListener("load", function(){
+            let currentQuestion = 0;
+            let ndomanda = document.querySelector(".question-number")
+            let domanda = document.querySelector(".question-text")
+            let obj = quiz[currentQuestion]
+            ndomanda.innerHTML = obj ["ndomanda"]
+            domanda.innerHTML= obj ["testo"]
+            let form = document.querySelector("form")
+            form.addEventListener("submit", function(e){
+                e.preventDefault()
+                let rispostautente=document.querySelector("[name=answer]")
+                obj["rispostautente"] = rispostautente.value
+                currentQuestion = currentQuestion + 1 
+                obj = quiz[currentQuestion]
+            })
+        })
+
+    
+    
+
     </script>
 </body>
+
 </html>
