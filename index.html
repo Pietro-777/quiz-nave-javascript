@@ -26,8 +26,8 @@
         let questions = [
             {
                 "n_domanda": 1,
-                "testo_domanda": "Perché il libro di matematica era triste?",
-                "risposta_corretta": "aveva troppi problemi",
+                "testo_domanda": "Qual è la capitale dell'Italia?",
+                "risposta_corretta": "roma",
                 "risposta_utente": "",
             },
             {
@@ -58,6 +58,8 @@
 
         let currentQuestion = 0
         let score = 0
+        let rispostaUtente = sanitize(inputRisposta.value)
+        let domandaCorrente = questions[currentQuestion]
         let ndomanda = document.querySelector(".question-number")
         let domanda = document.querySelector(".question-text")
         let form = document.querySelector("form")
@@ -92,11 +94,9 @@
         form.addEventListener("submit", function(e) {
             e.preventDefault()
 
-            let rispostaUtente = sanitize(inputRisposta.value)
-            let domandaCorrente = questions[currentQuestion]
 
             if (rispostaUtente === domandaCorrente.risposta_corretta) {
-                score += 1; 
+                score += 1 
             }
 
             currentQuestion++
