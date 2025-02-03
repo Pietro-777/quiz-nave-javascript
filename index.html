@@ -14,6 +14,7 @@
                 <span class="question-text"></span>
                 <div class="bottone-testo">
                     <input type="text" name="answer" id="guess">
+                    <br>
                     <input type="submit" id="button" value="Invia">
                 </div>
             </form>
@@ -58,8 +59,6 @@
 
         let currentQuestion = 0
         let score = 0
-        let rispostaUtente = sanitize(inputRisposta.value)
-        let domandaCorrente = questions[currentQuestion]
         let ndomanda = document.querySelector(".question-number")
         let domanda = document.querySelector(".question-text")
         let form = document.querySelector("form")
@@ -67,7 +66,6 @@
         let button = document.querySelector("#button")
         let resultDisplay = document.querySelector(".result")
 
-        
         function mostraDomanda() {
             if (currentQuestion < questions.length) {
                 let obj = questions[currentQuestion]
@@ -79,26 +77,19 @@
                 resultDisplay.innerHTML = "Quiz terminato! Hai totalizzato " + score + " punti su " + questions.length 
             }
         }
-
-        
         function sanitize(input) {
             return input.trim().toLowerCase()
         }
-
-        
         window.addEventListener("load", function() {
             mostraDomanda()
         })
-
-        
         form.addEventListener("submit", function(e) {
             e.preventDefault()
-
-
+            let rispostaUtente = sanitize(inputRisposta.value)
+            let domandaCorrente = questions[currentQuestion]
             if (rispostaUtente === domandaCorrente.risposta_corretta) {
-                score += 1 
+                score += 1; 
             }
-
             currentQuestion++
             mostraDomanda()
         })
