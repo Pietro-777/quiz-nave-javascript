@@ -1,23 +1,32 @@
+body {
+    background-color: rgb(209, 176, 28);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    
+}
+
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
+    justify-content: center;
+    margin-top: 0;
 }
 
-
-#guess{
+#guess {
     width: 250px;
     padding: 10px;
-    margin: 10px ;
+    margin: 10px;
     font-size: 16px;
     border: 2px solid #000000;
     border-radius: 5px;
     outline: none;
 }
 
-
-#button{
+#button {
     width: 100px;
     padding: 10px;
     background-color: #4CAF50;
@@ -26,8 +35,9 @@ form {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 100px;
-    }
+    margin: 10px 0;
+    
+}
 
 
 .result {
@@ -37,7 +47,9 @@ form {
     font-weight: bold;
 }
 
-
-body {
-    background-color: rgb(209, 176, 28);
+.testo-domanda{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
 }
