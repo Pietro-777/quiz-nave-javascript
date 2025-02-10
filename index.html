@@ -78,8 +78,9 @@
                 inputRisposta.value = ""
             } else {
                 form.style.display = "none"
-                resultDisplay.innerHTML = "Quiz terminato! Hai totalizzato " + score + " punti su " + questions.length 
+                MostraRisultati()
             }
+
         }
         function sanitize(input) {
             return input.trim().toLowerCase()
@@ -98,6 +99,12 @@
             mostraDomanda()
         })
 
+        function MostraRisultati() {
+            resultDisplay.innerHTML = "Hai risposto correttamente a " + score + " domande su " + questions.length
+        }
+
+
+      
     </script>
 </body>
 </html>
