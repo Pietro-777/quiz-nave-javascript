@@ -22,12 +22,12 @@
                     <input type="submit" id="button" value="Invia">
                 </div>
             </form>
-            <h2 class="result"></h2> 
-            <div class="errors"></div>
         </div>
+        <h2 class="result"></h2> 
     </div>
 
     <script>
+
         let questions = [
             {
                 "n_domanda": 1,
@@ -38,19 +38,19 @@
             {
                 "n_domanda": 2,
                 "testo_domanda": "Qual è la capitale della Francia?",
-                "risposta_corretta": "parigi",
+                "risposta_corretta": " Parigi",
                 "risposta_utente": "",
             },
             {
                 "n_domanda": 3,
                 "testo_domanda": "Chi ha scritto La Divina Commedia?",
-                "risposta_corretta": "dante alighieri",
+                "risposta_corretta": "dante",
                 "risposta_utente": "",
             },
             {
                 "n_domanda": 4,
                 "testo_domanda": "Quanti colori ha l'arcobaleno?",
-                "risposta_corretta": "sette",
+                "risposta_corretta": "7",
                 "risposta_utente": "",
             },
             {
@@ -59,78 +59,52 @@
                 "risposta_corretta": "dondolatte",
                 "risposta_utente": "",
             }
-        ];
+        ]
 
-        let currentQuestion = 0;
-        let score = 0;
-        let ndomanda = document.querySelector(".question-number");
-        let domanda = document.querySelector(".question-text");
-        let form = document.querySelector("form");
-        let inputRisposta = document.querySelector("#guess");
-        let button = document.querySelector("#button");
-        let resultDisplay = document.querySelector(".result");
-        let errorDisplay = document.querySelector(".errors");
+        let currentQuestion = 0
+        let score = 0
+        let ndomanda = document.querySelector(".question-number")
+        let domanda = document.querySelector(".question-text")
+        let form = document.querySelector("form")
+        let inputRisposta = document.querySelector("#guess")
+        let button = document.querySelector("#button")
+        let resultDisplay = document.querySelector(".result")
 
         function mostraDomanda() {
             if (currentQuestion < questions.length) {
-                let obj = questions[currentQuestion];
-                ndomanda.textContent = "Domanda " + obj.n_domanda;
-                domanda.textContent = obj.testo_domanda;
-                inputRisposta.value = "";
+                let obj = questions[currentQuestion]
+                ndomanda.innerHTML = "Domanda " + obj.n_domanda
+                domanda.innerHTML = obj.testo_domanda
+                inputRisposta.value = ""
             } else {
-                form.style.display = "none";
-                mostraRisultati();
+                form.style.display = "none"
+                MostraRisultati()
             }
-        }
 
+        }
         function sanitize(input) {
-            return input.trim().toLowerCase();
+            return input.trim().toLowerCase()
         }
-
-        function mostraRisultati() {
-            resultDisplay.textContent = "Hai risposto correttamente a " + score + " domande su " + questions.length;
-            questions.forEach(q => {
-                let div = document.createElement("div");
-                div.classList.add("errore-singolo");
-
-                let domandaP = document.createElement("p");
-                domandaP.textContent = "Domanda " + q.n_domanda + ": " + q.testo_domanda;
-
-                let rispostaCorretta = document.createElement("p");
-                rispostaCorretta.textContent = "Risposta corretta: " + q.risposta_corretta;
-
-                let rispostaUtente = document.createElement("p");
-                rispostaUtente.textContent = "Tua risposta: " + (q.risposta_utente || "(nessuna risposta)");
-                if (sanitize(q.risposta_utente) !== sanitize(q.risposta_corretta)) {
-                    rispostaUtente.style.color = "red";
-                } else {
-                    rispostaUtente.style.color = "green";
-                }
-
-                div.appendChild(domandaP);
-                div.appendChild(rispostaCorretta);
-                div.appendChild(rispostaUtente);
-                errorDisplay.appendChild(div);
-            });
-        }
-
-        form.addEventListener("submit", function(e) {
-            e.preventDefault();
-            let rispostaUtente = sanitize(inputRisposta.value);
-            let domandaCorrente = questions[currentQuestion];
-            domandaCorrente.risposta_utente = rispostaUtente;
-
-            if (rispostaUtente === sanitize(domandaCorrente.risposta_corretta)) {
-                score++;
-            }
-
-            currentQuestion++;
-            mostraDomanda();
-        });
-
         window.addEventListener("load", function() {
-            mostraDomanda();
-        });
+            mostraDomanda()
+        })
+        form.addEventListener("submit", function(e) {
+            e.preventDefault()
+            let rispostaUtente = sanitize(inputRisposta.value)
+            let domandaCorrente = questions[currentQuestion]
+            if (rispostaUtente === domandaCorrente.risposta_corretta) {
+                score += 1; 
+            }
+            currentQuestion++
+            mostraDomanda()
+        })
+
+        function MostraRisultati() {
+            resultDisplay.innerHTML = "i risposto correttamente a " + score + " domande su " + questions.length
+        }
+
+
+      
     </script>
 </body>
 </html>
